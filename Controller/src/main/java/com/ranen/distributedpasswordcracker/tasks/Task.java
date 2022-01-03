@@ -21,6 +21,14 @@ public class Task {
         }
     }
 
+    public boolean updateTaskProgress(String targetPassword, String lastAttemptedCombination) {
+        if (targetPassword.equals(this.targetPassword)) {
+            setLastAttemptedCombination(lastAttemptedCombination);
+            return true;
+        }
+        return false;
+    }
+
     public void setLastAttemptedCombination(String lastAttemptedCombination) {
         this.lastAttemptedCombination = lastAttemptedCombination;
     }

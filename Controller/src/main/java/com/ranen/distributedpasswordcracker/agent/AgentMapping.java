@@ -21,7 +21,7 @@ public class AgentMapping {
         return nextTaskItem;
     }
 
-    public void updateWorkItemStatus(String nodeIp, String lastAttemptedCombination) {
-        agentMap.get(nodeIp).setLastAttemptedCombination(lastAttemptedCombination);
+    public boolean updateWorkItemStatus(String nodeIp, String targetPassword, String lastAttemptedCombination) {
+        return agentMap.get(nodeIp).updateTaskProgress(targetPassword, lastAttemptedCombination);
     }
 }

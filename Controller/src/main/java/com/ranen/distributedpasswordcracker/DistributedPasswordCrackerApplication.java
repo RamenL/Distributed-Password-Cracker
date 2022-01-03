@@ -41,9 +41,15 @@ public class DistributedPasswordCrackerApplication {
 	}
 
 	@PostMapping("/update")
-	public boolean reportWork(@RequestParam(value = "password") String password, HttpServletRequest request) {
-		//check that task is still being updated. We use the password to see if it's still valid
-		return true;
+	public boolean reportWork(@RequestParam(value = "password") String password,
+							  @RequestParam(value = "lastAttemptedCombination") String lastAttemptedCombination,
+							  HttpServletRequest request) {
+		if (agentMapping.updateWorkItemStatus(request.getRemoteAddr(), password, lastAttemptedCombination)) {
+			//successful update of workitem progress
+			return true;
+		}
+		//update failed because work item is complete
+		return false;
 	}
 
 	//report work
