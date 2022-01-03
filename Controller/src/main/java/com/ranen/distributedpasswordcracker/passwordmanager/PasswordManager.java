@@ -2,7 +2,6 @@ package com.ranen.distributedpasswordcracker.passwordmanager;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Queue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
