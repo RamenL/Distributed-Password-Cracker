@@ -17,8 +17,8 @@ import java.util.Map;
 @RestController
 public class DistributedPasswordCrackerApplication {
 
-	private AgentMapping agentMapping = new AgentMapping();
-	private PasswordManager passwordManager = new PasswordManager();
+	private final AgentMapping agentMapping = new AgentMapping();
+	private final PasswordManager passwordManager = new PasswordManager();
 
 	public static void main(String[] args) {
 		SpringApplication.run(DistributedPasswordCrackerApplication.class, args);
@@ -29,12 +29,14 @@ public class DistributedPasswordCrackerApplication {
 		return passwordManager.getCompletedWorkItems();
 	}
 
+	//user adding more work
 	@PostMapping("/new")
 	public void addPasswordToCrack(@RequestParam(value = "password") String password) {
 		passwordManager.addWorkItem(password);
 	}
 
 	//@RequestParam(value = "name", defaultValue = "World") String name
+	//agent request work
 	@GetMapping("/request")
 	public Task requestWork(HttpServletRequest request) {
 		return agentMapping.assignWorkToNode(request.getRemoteAddr());
